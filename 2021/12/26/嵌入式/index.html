@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <meta name="description" content="1.嵌入式系统与通用计算机的区别。 嵌入式系统可以看做将通用计算机所具备的CPU,存储器，输入&#x2F;输出功能单元及其外设接口集成在一起，其内部的微控制器是一颗集成电路，拥有很多可编程IO引脚与外设连接，而通用计算机主板是一块印刷电路板，板边缘有外设接口用于连接外设。 嵌入式系统的CPU相较于通用计算机占用空间更小，功耗更低，同时时钟速度更低。 2.哈佛结构与冯诺依曼结构之区别 冯诺依曼架构  哈佛架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="嵌入式系统学习小总结">
+<meta property="og:url" content="http://example.com/2021/12/26/%E5%B5%8C%E5%85%A5%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.嵌入式系统与通用计算机的区别。 嵌入式系统可以看做将通用计算机所具备的CPU,存储器，输入&#x2F;输出功能单元及其外设接口集成在一起，其内部的微控制器是一颗集成电路，拥有很多可编程IO引脚与外设连接，而通用计算机主板是一块印刷电路板，板边缘有外设接口用于连接外设。 嵌入式系统的CPU相较于通用计算机占用空间更小，功耗更低，同时时钟速度更低。 2.哈佛结构与冯诺依曼结构之区别 冯诺依曼架构  哈佛架构">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image002.gif">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image003.png">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image004.gif">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image006.gif">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image007.png">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image009.png">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image010.gif">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image011.png">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image012.gif">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image013.Png">
+<meta property="og:image" content="https://image.wxydejoy.top/kk/image014.gif">
+<meta property="article:published_time" content="2021-12-26T13:14:41.318Z">
+<meta property="article:modified_time" content="2021-12-26T13:17:05.912Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://image.wxydejoy.top/kk/image002.gif">
+  
+  <title>嵌入式系统学习小总结 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="嵌入式系统学习小总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-26 21:14" pubdate>
+        2021年12月26日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">嵌入式系统学习小总结</h1>
+            
+            <div class="markdown-body">
+              <p>1.嵌入式系统与通用计算机的区别。</p>
+<p>嵌入式系统可以看做将通用计算机所具备的CPU,存储器，输入/输出功能单元及其外设接口集成在一起，其内部的微控制器是一颗集成电路，拥有很多可编程IO引脚与外设连接，而通用计算机主板是一块印刷电路板，板边缘有外设接口用于连接外设。</p>
+<p>嵌入式系统的CPU相较于通用计算机占用空间更小，功耗更低，同时时钟速度更低。</p>
+<p>2.哈佛结构与冯诺依曼结构之区别</p>
+<p>冯诺依曼架构</p>
+<p><img src="https://image.wxydejoy.top/kk/image002.gif" srcset="/img/loading.gif" lazyload alt="clipboard.png"></p>
+<p>哈佛架构</p>
+<p>哈佛结构将程序存储器独立出来，程序存储器拥有独立的地址总线和数据总线。</p>
+<p>3.ARM体系架构的流水线工作方式</p>
+<p>CPU的流水线技术是一种加速程序运行的技术。将一条指令分解为多步，让连续多条指令的各步操作重叠，实现几条指令并行处理。</p>
+<p>2级流水线：取指令，预译码，主译码，执行指令</p>
+<p><img src="https://image.wxydejoy.top/kk/image003.png" srcset="/img/loading.gif" lazyload alt="clipboard.png"></p>
+<p>3级流水线：取指令，译码，执行指令三步。第n条指令执行时，第n+1条指令译码，同时第n+2条指令取指，往下进行。</p>
+<p>（note:ARM Cortex-M0/M3的CPU内核都采用3级流水线，ARM Cortex-M0+的CPU内核则采用2级流水线，其动态功耗明显低于M0与M3。）</p>
+<p>4.相关名词</p>
+<p>寻址能力：取决于处理器的地址线数目</p>
+<p>IO接口三态：高电平，低电平，悬空</p>
+<p>TTL：晶体管-晶体管逻辑电平。+5v=”1”，0v=”0”。开关速度快，功耗较大。</p>
+<p>CMOS：基于NMOS，PMOS两者互补的MOSFET工艺，把N沟的MOSFET与P沟的MOSFET做在一个芯片上。功耗显著低于双极性与NMOS电路，速度比较低。</p>
+<p>（Note:<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/MOSFET/9205693?fr=aladdin"><span class="underline">MOSFET_百度百科 (baidu.com)</span></a>）</p>
+<p>驱动能力：输出电流之能力，</p>
+<p>5.ARM的集中工作模式</p>
+<p>用户模式；系统模式；快中断模式；中断模式；管理模式；中止模式；未定义模式。</p>
+<p>（Note:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zjy0806/p/11956953.html"><span class="underline">ARM的七种工作模式 - 张晋毅 - 博客园 (cnblogs.com)</span></a>）</p>
+<p>6.堆与栈</p>
+<p><strong>栈区</strong>：编译器自动分配释放内存，存放函数的参数值，局部变量的值等。（数据必须有一个已知的固定的大小。速度较快，但无法控制。）</p>
+<p>Note:</p>
+<p>函数调用时，第一个进栈的是主函数后的下一条指令的地址，然后是函数的各个参数，然后是函数中的局部变量，（静态变量不入栈）。函数调用结束后，局部变量先出栈，然后是参数，最后栈顶指针指向最开始存的地址，即主函数的下一条指令。</p>
+<p><strong>堆区</strong>：一由程序员分配释放内存（先请求一定大小的空间，OS在堆某处找到一个空位，并标记为已使用，返回一个其位置的指针。速度较慢，但用起来方便。）</p>
+<p>Note:</p>
+<p>C中的malloc函数使用heap:</p>
+<p>p1 = (char*)malloc(10)</p>
+<p>C++中的new运算符：</p>
+<p>p2 = new char[10]</p>
+<p>p1 p2本身是在栈中的。</p>
+<p>7.静态变量</p>
+<p>存放在全局数据区（静态数据区）。程序结束时候才被释放（生命周期）。</p>
+<p><strong>局部静态变量特点</strong>：</p>
+<p>不会随着函数的调用和退出而发生变化。尽管变量继续存在，但不能使用它。若再次调用定义它的函数，又可继续使用，且保存了前次被调用的值。</p>
+<p>只会初始化一次。</p>
+<p>只能被初始化为一个字符值或一个常量，不能使用表达式。若为初始化，系统赋值为0</p>
+<p>适用于当多次调用一个函数且要求在调用之间保留某些变量的值时，可考虑采用静态局部变量。</p>
+<p>所有全局变量都是静态存储方式。</p>
+<p>8.中断</p>
+<p>由于意外事件的打断，CPU暂时中止当前程序，转去处理事件，处理完后，返回原程序的过程。</p>
+<p>内（软）中断：定时中断</p>
+<p>外（硬）中断：外部事件</p>
+<p>提高CPU工作效率</p>
+<p>由中断服务程序执行</p>
+<p>9.总线性能参数？如何避免冲突？</p>
+<p>性能参数：总线带宽；总线位宽；总线工作时钟频率</p>
+<p>总线带宽=总线位宽*总线工作时钟频率。</p>
+<p>（<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_a37c02dc01017xfi.html"><span class="underline">总线篇：性能参数详解_科迪亚_新浪博客 (sina.com.cn)</span></a>）</p>
+<p>10.地址对齐（<a target="_blank" rel="noopener" href="https://www.cnblogs.com/mhq-martin/p/11537873.html"><span class="underline">内存地址对齐 - mhq_martin - 博客园 (cnblogs.com)</span></a>）</p>
+<p>包括基本数据对齐与结构体数据对齐。</p>
+<p>基本数据对齐：数据在内存中的偏移地址必须等于一个字的倍数。</p>
+<p>结构体数据对齐：为了对齐数据，可能必须在上一个数据结束和下一个数据开始的地方插入一些没有用处的字节。</p>
+<p><img src="https://image.wxydejoy.top/kk/image004.gif" srcset="/img/loading.gif" lazyload alt="clipboard.png">{width=”5.760416666666667in” height=”4.461347331583552in”}</p>
+<p>问题：既然32位CPU以双字进行数据传输，那么当数据只有8位或16位时候，CPU是否是按照数据的位数来进行数据传输？</p>
+<p>假设一个int类型数据首地址为1。一部分会存在地址0-3中，另一部分会在4-7中，CPU会分两次取数据并通过最后的组合舍弃操作得到此int类型数据。但如果int类型数据首地址为0，就大大方便很多。</p>
+<p>内存对齐的原则：</p>
+<p>1.第一个成员的首地址为0；</p>
+<p>2.每个成员的首地址是自身大小的整数倍；</p>
+<p>（以4字节对齐为例，如果自身大小大于4字节，都以4字节整数倍为基准对齐）</p>
+<p>3.最后以结构总体对齐；</p>
+<p>（以4字节对齐为例，取结构体中最大成员类型倍数，如果超过4字节，都以4字节整数倍为基准对齐。还有补齐）</p>
+<p><strong>实例</strong>：</p>
+<p><img src="https://image.wxydejoy.top/kk/image006.gif" srcset="/img/loading.gif" lazyload alt="clipboard.png">{width=”5.760416666666667in” height=”2.4170592738407697in”}</p>
+<p>11.位运算（<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/bit-operation.html"><span class="underline">位运算（&amp;、|、^、~、&gt;&gt;、 | 菜鸟教程 (runoob.com)</span></a>；<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65968533"><span class="underline">【算法技巧】通过位运算来带你装逼 - 知乎 (zhihu.com)</span></a>；<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/38206659"><span class="underline">位运算有什么奇技淫巧？ - 知乎 (zhihu.com)</span></a>）</p>
+<p>&amp;（与）：两位都为1，结果为1。</p>
+<p>|（或）：两位都为0，结果为0。</p>
+<p>^（异或）：两位相同为0，相异为1。</p>
+<p>&lt;&lt;（左移），&gt;&gt;（右移）</p>
+<p>用途：</p>
+<p>置0:</p>
+<p>1100 0011 &amp; 0000 0000 = 0000 0000</p>
+<p>取指定位：</p>
+<p>1100 0011 &amp; 0000 1111 = 0000 0011</p>
+<p>判断奇偶：</p>
+<p>1100 0011 &amp; 0000 0001 = 0000 0001</p>
+<p>置1:</p>
+<p>1100 0011 | 0000 1111 = 1100 1111</p>
+<p>翻转指定位：</p>
+<p>1100 0011 ^ 0000 1111 = 1100 1100</p>
+<p>取自身值：</p>
+<p>1100 0011 ^ 0000 0000 = 1100 0011</p>
+<p><strong>交换两个数</strong>：</p>
+<p>0000 0101（x） 同 0000 1100（y） 互相交换值</p>
+<p>x = x ^ y</p>
+<p>y = x ^ y</p>
+<p>x = x ^ y</p>
+<p>^的交换律与结合律：</p>
+<p>y = x ^ y = (x ^ y) ^ y = x ^ (y ^ y) = x ^ 0 = x</p>
+<p>x = x ^ y = x ^ (x ^ y) = (x ^ x) ^ y = 0 ^ y = y</p>
+<p>12.SHL SHR SAR SAL相关（<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/3592.html"><span class="underline">汇编语言SAL（算术左移）和SAR（算术右移）指令：将操作数左/右移一位 (biancheng.net)</span></a>）</p>
+<p><strong>SHL：</strong>使目的操作数逻辑左移一位，最低位用0填充。最高位进入进位标志位（cf），cf中原来的数值被丢弃。</p>
+<p><img src="https://image.wxydejoy.top/kk/image007.png" srcset="/img/loading.gif" lazyload alt="clipboard.png">{width=”5.180555555555555in” height=”1.1674496937882766in”}</p>
+<p>function:位元乘法</p>
+<p>任何操作数左移n位，等于将该数乘以2^n。</p>
+<p>**SHR:**使目的操作数逻辑右移一位，最高位用0填充。最低位进入进位标志位（cf）,cf中原来的数值被丢弃。</p>
+<p><img src="https://image.wxydejoy.top/kk/image009.png" srcset="/img/loading.gif" lazyload alt="clipboard.png">{width=”5.236111111111111in” height=”1.1138451443569555in”}</p>
+<p>function:位元除法</p>
+<p>将一个无符号数右移n位，等于将该数除以2^n。</p>
+<p><img src="https://image.wxydejoy.top/kk/image010.gif" srcset="/img/loading.gif" lazyload alt="clipboard.png">{width=”3.7222222222222223in” height=”0.8549639107611549in”}</p>
+<p><strong>SAL与SAR:<strong>两个指令的操作数类型与SHL,SAR完全相同，差别在于</strong>移位后空出来的位用原数据的符号位填充</strong>。</p>
+<p><img src="https://image.wxydejoy.top/kk/image011.png" srcset="/img/loading.gif" lazyload alt="clipboard.png">{width=”5.347222222222222in” height=”1.1361548556430445in”}</p>
+<p><img src="https://image.wxydejoy.top/kk/image012.gif" srcset="/img/loading.gif" lazyload alt="clipboard.png">{width=”5.305555555555555in” height=”1.1674311023622048in”}</p>
+<p>function:有符号数除法</p>
+<p><img src="https://image.wxydejoy.top/kk/image013.Png" srcset="/img/loading.gif" lazyload alt="clipboard.png">{width=”3.0833333333333335in” height=”0.90625in”}</p>
+<p>13.形参和实参的传递（<a target="_blank" rel="noopener" href="https://www.jb51.net/article/180116.htm"><span class="underline">c语言的形参和实参传递的区别详解_C 语言_脚本之家 (jb51.net)</span></a>；<a target="_blank" rel="noopener" href="https://blog.csdn.net/iteye_1485/article/details/82543055"><span class="underline">形参与实参之间的值传递_844604778-CSDN博客</span></a>；<a target="_blank" rel="noopener" href="https://blog.csdn.net/du111_/article/details/79929578"><span class="underline">函数实参与形参之间的传递_du111_的博客-CSDN博客_实参与形参的传递方式</span></a>）</p>
+<p>传递的本质：</p>
+<p><strong>1.值传递</strong></p>
+<p>void main()</p>
+<p>{</p>
+<p>int i = 10;</p>
+<p>int j = i;</p>
+<p>j = 20;</p>
+<p>printf(&quot;i = %d,j = %d\n&quot;,i,j);</p>
+<p>}</p>
+<p>输出：i =10,j = 20</p>
+<p>在 int j = i 时，开辟了一个新内存，然后将i中的值复制到j中的过程。</p>
+<p><strong>2.地址传递</strong></p>
+<p>void main()</p>
+<p>{</p>
+<p>int i = 10;</p>
+<p>int *j = &i;</p>
+<p>*j = 20;</p>
+<p>printf(&quot;i = %d,j = %d\n&quot;,i,j);</p>
+<p>}</p>
+<p>输出：i =20,j=20</p>
+<p>在 int *j = &amp;i时，开辟了一个新内存，然后将i的地址的值复制到j的过程。</p>
+<p><strong>3.引用传递</strong></p>
+<p>void main()</p>
+<p>{</p>
+<p>int i = 10;</p>
+<p>int &amp;j = i;</p>
+<p>j = 20;</p>
+<p>printf(&quot;i = %d,j = %d\n&quot;,i,j);</p>
+<p>}</p>
+<p>输出：i = 20，j = 20</p>
+<p>在 int &amp;j = i时，是将i重命名为j。</p>
+<p><strong>交换两个数的值：</strong></p>
+<p><strong>值传递：</strong></p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>void swap( int x, int y);</p>
+<p>int main()</p>
+<p>{</p>
+<p>int a=2,b=3;</p>
+<p>swap(a,b);</p>
+<p>printf(&quot;a=%d,b=%d\n&quot;,a,b);</p>
+<p>return 0;</p>
+<p>}</p>
+<p>void swap(int x,int y)</p>
+<p>{</p>
+<p>int tmp;</p>
+<p>tmp=x;</p>
+<p>x=y;</p>
+<p>y=tmp;</p>
+<p>printf(&quot;x=%d,y=%d\n&quot;,x,y);</p>
+<p>}</p>
+<p>输出：a=2,b=3 x=3,y=2</p>
+<p><strong>地址传递：</strong></p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>void swap( int *x, int *y);</p>
+<p>int main()</p>
+<p>{</p>
+<p>int a=2,b=3;</p>
+<p>swap(&amp;a,&amp;b);</p>
+<p>printf(&quot;a=%d,b=%d\n&quot;,a,b);</p>
+<p>return 0;</p>
+<p>}</p>
+<p>void swap(int *x,int *y)</p>
+<p>{</p>
+<p>int tmp;</p>
+<p>tmp=*x;</p>
+<p>*x=*y;</p>
+<p>*y=tmp;</p>
+<p>printf(&quot;x=%d,y=%d\n&quot;,x,y);</p>
+<p>}</p>
+<p>不能直接修改指针，但可以修改指针指向的值。</p>
+<p>14.变量与指针</p>
+<p>Note:</p>
+<p>变量：在高级语言（如C语言），用符号名称来替换实际的内存地址（避免麻烦），这些符号的名称被称为变量（只是程序员为计算机内存单元赋予的名称，如在旅馆房间的门上挂了一个房间名，通过名称来寻找，而不是房间号）。</p>
+<p>指针：实际上就是指地址。一切皆地址。指针变量用来存放指针（地址）</p>
+<p>变量在内存中所占的存储单元的地址即为指针。（首地址）</p>
+<p>指针变量也是一种变量，和其他变量一样要占据一定的储存空间。不同之处在于指针的存储空间存放的不是不同的数据，而是一个地址。</p>
+<p>case:</p>
+<p>假设i是一个占两个字节的整型变量，p是一个指向变量的指针。</p>
+<p><img src="https://image.wxydejoy.top/kk/image014.gif" srcset="/img/loading.gif" lazyload alt="image014"></p>
+<p>变量i的地址范围为 2000H-2001H。i的数值为 10100100 01001011（高地址为高八位，低地址为低八位）。指针变量p也占两个内存单元 2100H-2101H。数值为 00100000 00000000。</p>
+<p>指针变量p有自己的内存地址，同时其值为00100000 00000000（转换为16进制为2000H，为变量i的首地址）。通过这样将指针变量p与变量i连接起来（首先获得i的地址，通过i的地址来访问i的值）。</p>
+<p>通常只关注指针变量指向的是谁，而不关注其本身的地址。若有一个指针变量p的地址存放在另一个指针变量q中，那么指针变量q就指向了指针变量p，</p>
+<p>note:</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/maxin/p/5544223.html"><span class="underline">指针与指针变量 - 新生代黑马 - 博客园 (cnblogs.com)</span></a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Zhang_Yixuan_ss/article/details/78801410"><span class="underline">c语言与指针——（一）指针与变量_张毅轩的博客-CSDN博客_c语言与指针</span></a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45832958/article/details/104779537?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.pc_relevant_paycolumn&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.pc_relevant_paycolumn"><span class="underline">指针变量（C语言）_111辄的博客-CSDN博客_char指针变量</span></a></p>
+<p>15.int float bool变量（存储机制）与0比较</p>
+<p><strong>int类型变量i与0值比较：</strong></p>
+<p>if(n == 0)</p>
+<p>if(n != 0)</p>
+<p><strong>float类型变量n与0值比较：</strong></p>
+<p>const float EPSINON = 0.00001</p>
+<p>if((x &gt;= -EPSINON) &amp;&amp; (x &lt;= EPSINON))</p>
+<p>note:float类型与double类型的变量都有精度限制，不可用”==””！=”与任何数比较。浮点数在内存中的存储机制与整型数据不同，有舍入误差，即用近似数表示某个实数（一个实数由一个整数乘以某个基数（通常为2）的整数次幂得到）。所以浮点数不能判断相等，一般用范围来确定。</p>
+<p><strong>BOOL类型变量flag与0值比较：</strong></p>
+<p>if(flag)</p>
+<p>if(! flag)</p>
+<p>bool规定为TRUE和FALSE,但TURE值的定义在不同的环境和系统可能不同。</p>
+<p><strong>指针变量p与0值的比较：</strong></p>
+<p>if(p == NULL)</p>
+<p>if(p != NULL)</p>
+<p>16.全局变量，局部变量，静态变量，动态变量，常量</p>
+<p><strong>全局变量</strong>：在所有函数体外部定义，程序的所有部分都可以使用，不受作用域影响。生命周期一直到程序的结束，为<strong>静态存储</strong>方式。</p>
+<p><strong>局部变量</strong>：出现在一个作用域内，局限在一个函数内。又称自动变量（在进入作用域时，自动生成，离开作用域时，自动消失）。</p>
+<p>note:通常函数里定义的变量，函数的参数都是局部变量。一般需要在某个函数里返回数组的地址或指针之类，此时必须定义为static，函数结束返回时才不会释放掉那块内存空间。</p>
+<p><strong>静态存储变量（static）：</strong>在变量定义时就分定存储单元并一直不变，直至程序结束。（静态变量，全局动态变量）。只会初始化一次</p>
+<p><strong>动态存储变量：</strong>程序执行时，使用时才分配存储单元，使用完立即释放。</p>
+<p><strong>动态变量：</strong></p>
+<p><strong>全局：</strong>所有函数外部定义，所有函数都可使用；作用域为整个项目（编译可执行文件的所有文件均可使用，外部文件通过extern关键字声明）；生命周期贯穿整个运行时间；默认初始化为0。</p>
+<p><strong>局部：</strong>函数内部定义，其他函数和外部文件不能访问；作用域为当前函数；生命周期为函数调用到退出；</p>
+<p><strong>静态变量：</strong></p>
+<p><strong>全局：</strong>作用域为当前文件（与动态全局变量不同之处）；生命周期贯穿整个运行时间；</p>
+<p><strong>局部：</strong>作用域为当前函数；生命周期为程序的运行到退出（和动态局部变量不同之处）。当再次调用函数时，静态局部变量不会被再次初始化，而是沿用上次函数退出时候的值。</p>
+<p><strong>全局变量，静态全局变量，静态局部变量都在静态存储区分配空间。局部变量是在栈上分配空间。常量存储在常量区。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33757398/article/details/81365475"><span class="underline">静态变量与动态变量_renwu-CSDN博客_动态变量</span></a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zcyzsy/article/details/52207085"><span class="underline">C和C++中全局变量，局部变量，静态变量和常量_ZMyths的博客-CSDN博客_c++ 静态常量</span></a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42923076/article/details/111598681?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.essearch_pc_relevant&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1.essearch_pc_relevant"><span class="underline">C++学习笔记——静态与常量（一）_zkccpro的博客-CSDN博客</span></a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/21/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
