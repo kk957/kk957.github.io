@@ -11,12 +11,12 @@
     <content type="html"><![CDATA[<p>前言：</p><p>通过此前一篇对于嵌入式系统相关内容的复习总结，尤其是对C/C++一些相关知识的回顾，对于C/C++又有了一些新的认识，此篇作为自己对于案头摆放很久了的一本国外C/C++参考书《标准C语言基础教程》中一些重要概念的再探总结。</p><p><img src="https://image.wxydejoy.top/kk/%E5%88%9D%E5%A7%8B%E5%8C%96/2021-12-28-18-29-04.jpg" alt="选自JZY朋友圈"></p><h2 id="【C与C-本质区别】"><a href="#【C与C-本质区别】" class="headerlink" title="【C与C++本质区别】"></a>【<strong>C与C++本质区别</strong>】</h2><p>首先我们得明白不管是C还是C++，其中定义的数据都必须要提供其类型的。如C中的int，double，char等。在C语言中这些数据类型被称为<strong>内置数据类型</strong>（基本数据类型）。但在其他一些编程语言中，允许程序员（不是我）自己创建数据类型（一个具有相关的值范围和能够在可接受的值上执行操作的值类型），被成为<strong>抽象数据类型</strong>。C语言不行，但C++具备这种能力。于是，C++中这种被程序员（不是我）创建出来的抽象数据类型又被称为类（class）。科普：C++的原名又叫“C with Classes”。</p><h2 id="【过程抽象】"><a href="#【过程抽象】" class="headerlink" title="【过程抽象】"></a>【<strong>过程抽象</strong>】</h2><p>函数的来源：所有的编程语言都允许对自包含的指令集赋予一个名称，C语言中称为函数。</p><p>以上面这样的方式给函数赐名，就可以简单的用带有实参的名称调用这个函数，即为过程抽象。</p><p>note:以抽象思维来思考一些问题时能够让程序员（不是我）站在更高的层次解决问题，而不必在意细节。像通过海伦公式计算任意一个三角形的面积，可以不必立即去想如何得到这个面积，而是将它设计为一个可以调用的函数。这样就可以有更多的精力来从更高的角度关注程序的其他方面。至于函数设计可以找力工做或留到最后。</p><h2 id="【小体会】"><a href="#【小体会】" class="headerlink" title="【小体会】"></a>【<strong>小体会</strong>】</h2><p>对于C语言中最关键的函数有这样的理解以及了解其与C++的关系与区别之后，我将首先展开对于自己前些天读过的书中的一些关键点的分享，如函数模块性中的对于变量的深层次介绍，对于数组，地址，指针三大主题的深入理解等，最后将简单的介绍一些C++的知识，那些基础的知识如选择，循环，数据类型等就不再写了（这个写完可能会做另做一篇总结）。当然，深知自己通过书本中的这些介绍与自己的一些思考只是触碰其皮毛而已，“绝知此事要躬行”。参考书中也有大量的实例与练习题，我将尽力把看过的基础知识与实例结合来理解然后进行总结并形象地呈现在您的眼前，对于刚开始通过blog创作知识分享的自己来说显然是个挑战，也需要自己能够做一些实际的练习，但既然已经开始，便要好好做下去！</p><h2 id="【一-再探变量】"><a href="#【一-再探变量】" class="headerlink" title="【一.再探变量】"></a>【一.再探变量】</h2><p>之前在嵌入式那篇中，被动态变量，静态变量，全局变量，局部变量，局部动态变量，局部静态变量等搞得脑袋晕晕乎乎，所以这次想来跳出一次理论知识的旋涡，先通过一个实例程序初步建立印象：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-keyword">int</span> firstnum;<span class="hljs-comment">//建立一个名称为firstnum的全局变量</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">()</span></span>;<span class="hljs-comment">//函数原型</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> secnum;<span class="hljs-comment">//建立一个名称为secnum的局部变量</span><br>    firstnum = <span class="hljs-number">10</span>;<span class="hljs-comment">//10存入全局变量secnum中</span><br>    secnum = <span class="hljs-number">20</span>;<span class="hljs-comment">//20存入第一个局部变量secnum中</span><br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;firstnum = %d&quot;</span>,firstnum);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;secnum = %d&quot;</span>,secnum);<br>    <br>    fun();<span class="hljs-comment">//调用fun函数</span><br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;firstnum = %d&quot;</span>,firstnum);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;secnum = %d&quot;</span>,secnum);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> secnum;<span class="hljs-comment">//建立第二个名称为secnum的局部变量</span><br>    secnum = <span class="hljs-number">30</span>;<span class="hljs-comment">//30存入第二个局部变量secnum中</span><br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;firstnum = %d&quot;</span>,firstnum);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;secnum = %d&quot;</span>,secnum);<br>    <br>    firstnum = <span class="hljs-number">50</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>最终输出结果：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c">firstnum = <span class="hljs-number">10</span><br>secnum =<span class="hljs-number">20</span><br>    <br>firstnum = <span class="hljs-number">10</span><br>secnum = <span class="hljs-number">30</span><br>    <br>fristnum = <span class="hljs-number">50</span><br>secnum = <span class="hljs-number">20</span><br></code></pre></td></tr></table></figure>]]></content>
     
     
+    <categories>
+      
+      <category>知识分享</category>
+      
+    </categories>
     
-    <tags>
-      
-      <tag>学习总结</tag>
-      
-    </tags>
     
   </entry>
   
@@ -49,12 +49,12 @@
     <content type="html"><![CDATA[<p>前言：本书是知名生涯规划师，畅销书作家古典老师的力作。此前在喜马拉雅晓书童频道听过好几期对这本书的解读，深有感触，遂购回一本闲来无事翻阅吸收。</p><p>以此篇作为对书中一些观点的记录以及自身之体会。</p><p><img src="https://image.wxydejoy.top/kk/%E5%88%9D%E5%A7%8B%E5%8C%96/2021-12-27-16-13-05.png" alt="封面.png"></p><p>​书背面有俞敏洪，张德芬，樊登等的推荐语，个人最喜欢樊登老师所说：“生活中很多人问我什么是成长，我非常喜欢古典老师的在书中写的一句话：‘成长是你内心的一个尺度。’，人与人，人与社会的差距，本质是由不同的心智模式造成的，当你拆掉思维里的墙，你的前路才会无限宽敞，才会无限明亮”。</p><p>​这里面我突然发现了“心智模式”这个有些新鲜的词，百度百科如此解释：“深植我们心中关于我们自己，别人，组织，及周围世界每个层面的假设，形象和故事。并深受习惯思维，定势思维，已有知识的局限”。我真的知道自己内心深处的思考方式吗？我真的自以为很了解自己吗？我成长过程中形成的思维里的那堵墙到底是什么呢？带着这些问题，翻开了这本颇有些鸡汤杂文气息的书。愿自己还有看到这篇笔记的你通过此书能够在忙忙碌碌的生活中有一些对于成长的思考，对于自身的认识，并做出一些真正的改变。（2021.12.22）</p>]]></content>
     
     
+    <categories>
+      
+      <category>读书笔记</category>
+      
+    </categories>
     
-    <tags>
-      
-      <tag>读书笔记</tag>
-      
-    </tags>
     
   </entry>
   
@@ -68,12 +68,12 @@
     <content type="html"><![CDATA[<p>从今天开始，改变自己前一段时间生活中的一些不好的习惯，如午觉睡的时间过长，早上动不动因为起晚就不吃早饭或随意敷衍过去等。当一个人闲下来的时候总会因为找不到一些学习工作之外自己的热爱而感到无聊空虚，继而无事即想睡觉，想了想自己之前的一些业余，跑步，练习毛笔字，看一些好看的电视剧等这些都应该重新拾起，从认真对待自己的生活开始！也就慢慢会认真对待自己的学习工作！这不会是日记！是热爱生活的人的记录！</p><h2 id="12月15日-多云转阴-6℃-19℃"><a href="#12月15日-多云转阴-6℃-19℃" class="headerlink" title="12月15日 多云转阴 6℃-19℃"></a>12月15日 多云转阴 6℃-19℃</h2><p>今天早上起来后一天没上床睡觉。学习了，也玩儿了，没啥好写，晚上看到一篇夜读文章，感觉不错，摘录一下吧。<br><strong>《一个人未来的样子，藏在他对待清晨的态度里》</strong><br>不知什么时候起，熬夜仿佛成了奋斗的标志。但仔细想想，能拉开人与人之间差距的不是晚睡，而是早起。<br>有位网友参加了一项“早起30天”的挑战。他是个普通上班族，以前熬夜加班后白天再继续工作，总觉得自己是在被任务拖着走，忍不住打瞌睡。开始坚持早睡早起后，犯困成了偶尔的事，工作效率大幅提升，成功避开了地铁早高峰，他再也不用体会被拥挤人潮推着走的感觉。由于头脑清醒，他做事更有计划，在工作时还时不时冒出各种创意。<br>早起，看似是细微的改变，收获却不容小觑。生活还是同样的生活，忙碌还是同样的忙碌，但是选择早睡早起，你就可以抓住了生活的主动权。<br>网上曾有一个“你为什么熬夜”的调查，有一半的网友坦承，自己往往是在追剧，耍手机，总觉得夜晚的时间才是自己的，舍不得睡。<br>我们的潜意识里总觉得，早起和熬夜都是时间，多熬一点，时间就多一点。但扪心自问，熬夜给了你什么？往往是身体抱恙，颜值崩塌，脱发长痘，精神不济。<br>同样是八小时睡眠，十点睡六点起，和凌晨两点睡十点起，过的是不一样的人生。早起的人拥有更加充沛的精力和更清醒的头脑，因为效率更高，还拥有更多的时间。<br>熬夜给不了你的，早起往往都能给你。时间对每个人都是公平的。它不会迁就任何人。我们应该学会的，是在最高效率最没有干扰的时候，做最该做的事情。早点儿起床，你值得用最好的状态，开启崭新的一天。<br>每次看到早起的文章，下面总会有人留言：“都知道早起好处多，但就是做不到”，其实，真正尝到了甜头的人，根本不用坚持早起。<br>有位up主曾是早起苦难户，下决心早起一次，刷刷手机后又想睡个回笼觉。直到他偶然看到一个说法：你做不到早起，往往是过多的外界干扰消耗了你的意志力。<br>他尝试改变，换上普通闹钟，保证早起后做第一件事情前不碰手机。他把要做的事情也拆分成了两分钟的小事：想健身，就快走两分钟；想学英语，那就背一个单词；想写脚本，就先写一行。他发现，早起做事不再艰难，充实感代替可焦虑。<br>有人说：“能控制早晨的人，方可控制人生”。“你和羡慕的生活之间，也许只有一个早起的距离。今夜，早点睡吧，有勇气结束今天，才有精力迎接更好的明天。</p><h2 id="12月17日-晴朗-1℃-12℃"><a href="#12月17日-晴朗-1℃-12℃" class="headerlink" title="12月17日 晴朗 1℃-12℃"></a>12月17日 晴朗 1℃-12℃</h2><p>今天是白天没上床的第三天，而且也没睡午觉。早早的去吃了个早饭，又去外面新教区溜达了一圈。而且是第三天早睡早起，晚上睡觉没带手机（以前的好习惯又回来了），三天下来，发现纵使一天不睡午觉也可以很精神的去做事情，而且这几天感觉每天状态都非常不错。现在想想，前段时间下午一没事情就躺床上一两个小时真是罪过啊！希望能够坚持到离校，还有两周多。<br>下午两节课的嵌入式又学到了不少东西，这也算是自己本科生涯的倒数第二课了。没什么特别的仪式感，也就这么普普通通的过去了，自己的美好大学生活也将要过去了。现在写下前面这几句话时，思绪不觉又飘到以前各类各样的课堂上去了，有很多给人印象深刻的老师，像大一上学期的思修老师和工图老师等等。不知道自己和三年多前刚怯怯的来到这儿时有什么变化，自己也觉察不出来，只觉得自己对很多事情的看法有了根本性的变化了，或是开始思考很多很多事情了，人前也没以前那么扭捏了。这些答案得过年回去和三年多没见的好友好好唠唠嗑了。<br>今天天气不错，也如今日之心情，坚持这几天好的开端，早上去新操场那边的那个宝藏地儿真不错！明天早上去那多站一会儿（想想该干些什么）。</p><h2 id="12月19日-晴朗-2℃-12℃"><a href="#12月19日-晴朗-2℃-12℃" class="headerlink" title="12月19日 晴朗 -2℃-12℃"></a>12月19日 晴朗 -2℃-12℃</h2><p>继续早睡早起白天不上床的一天，感觉精神状态一天比一天好！早饭煎饺黑米粥，午饭香锅，晚饭炸酥肉（最近着实有些能吃了）。<br>今天把《国王排名》给追到最新的，对于一个已经有两三年没怎么看动漫的人来说，突然看一下倒真感觉挺治愈（上一次追动漫还是大一那个秦时明月）。这个波吉殿下真是太喜欢了，以及卡克，还有其他叫不上名儿的都不错，挺励志！<br>晚上看了一会儿珂学原理，老王的这几个视频看了好几遍了，每一次看都有新领会，他说学好数学和历史交织在一起能够让一个人在这个不确定的时代能够从容面对，总觉得是真的吗？也许得真正去深入才能知道，对于历史，自己向来是喜欢。但数学，怎么说呢？不排斥也不是太喜欢（可能自己没真正深入吧，曾经也看过一些数学史的书，也挺有趣的，但到大学接受高等数学，线代等课堂式的数学后，也即做题式的数学，为了考试式的数学，不得不说自己之前对于数学的兴趣遭受了很大的打击，但我想现在这些闲时间我可以继续在珂学原理好好听听老王讲的一些数学了）。<br>这几天闲的没事跟家里视了视频，谈话间感觉时间真快啊！有时候总感觉自己还没真正长大，有时候也总感觉自己要开始想想一些长大后该想想的事情了。但有一点自己是清楚的，自己现在能够安心读书也许是最重要的，不管周围还是远处，不管自己内心还是外界，各种各样来自各个方面的使人心扰的东西还是蛮多的，身边的一切也在快速之变化，正如安静的校园围墙之外一样。在这样的世界矗立而不迷茫，对于现在的自己来说总归是有些挑战的。老王那期视频还有早上听的晓书童的那期节目说的都不错，找到自己热爱的事情然后像极限运动员一样去做。可是现在什么才是自己真正热爱做的事情呢？相信也是很多人的同样的疑惑，科学研究吗？运动吗？学习吗?睡觉吗？….,或许都不是，就要像晓书童说的那样，与其拼命去追求意义，不如好好感知当下的意义！确实不错，但自己着实理解的好大一会儿。我想自己以后写的东西一定也还会讨论这个问题的，今天就写到这儿吧。<br>总而言之，今天收获不少！</p><h2 id="12月24日-阴（有雾）-5℃-17℃"><a href="#12月24日-阴（有雾）-5℃-17℃" class="headerlink" title="12月24日 阴（有雾） 5℃-17℃"></a>12月24日 阴（有雾） 5℃-17℃</h2><p>早起+白天不上床的第九天！这几天早上总觉得没啥胃口，但早饭一定还是要吃的。上午继续看了会儿嵌入式，堆与栈，还有中断啥的，其实这些以前总感觉迷迷糊糊的东西如果仔仔细细的看看倒真没啥难以理解的，只是在于你的内心愿不愿意去仔细想思考一会儿！<br>下午又还是去上了嵌入式的课，真正的大学最后一课了，虽然只有4个人来。老师也讲了C语言的一些东西，也都是些基础的知识罢了。上课前老师闲聊的一些东西倒真是让自己思考好些！他说需要花花时间去规划规划未来，所谓的名校学历的作用期也就毕业5年之内，名校也就是拉高了一下自己最后落脚的平台，受到一些熏陶。如果研究生三年后面对自己人生的态度和现在无异，依旧有些茫然（包括读研究生的时候），像老师说的那样到时如果找工作或是继续读下去，哪儿要自己就去哪儿，那这个研究生不管在哪儿读可能效果都是一样的。可现如今很多人（包括过去的自己）也就真的认为读了个名校研究生后就一定会所谓的有出息，可殊不知这是建立在读研需要付出更多的努力，经历更多的艰辛而蜕变的基础上的。现在也就真的需偶尔考虑自己今后要去哪儿接受社会的毒打！如今信息如此发达，想去的地方需要什么样的人才都很容易知道，记得去年自己说以后要去小米跟雷总造车（可能被去年雷总的演讲整的激情澎湃哈哈哈）。不知道现在自己离这个目标点有多远（哈哈）。也算今天在此标个点吧！人生如戏！造化弄人！以后谁也未知？就像大学刚来甚至直到大二结束时自己怎么会知道自己大三后的生活是什么样的呢？<br>最后一课结束了！到明年九月份这么大的一段空白期，心好好静下来！有些东西对于自己来说有无必要自己是很清楚的，好好认识认识自己。今天又看了些《拆掉思维里的墙》，一个人最重要的能力是什么呢？大概就是能够对自己有清晰的认识，能够利用自己学到的知识以及身边高人的指导找到自己热爱的事情，然后将自己学习的能力发挥到炉火纯青去做好它吧！（起码现在认为如此！）</p>]]></content>
     
     
+    <categories>
+      
+      <category>生活记录</category>
+      
+    </categories>
     
-    <tags>
-      
-      <tag>生活记录</tag>
-      
-    </tags>
     
   </entry>
   
@@ -81,26 +81,12 @@
   
   <entry>
     <title>梦开始的地方</title>
-    <link href="/2021/11/21/%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
-    <url>/2021/11/21/%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+    <link href="/2021/12/12/%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+    <url>/2021/12/12/%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a><br><a href="https://image.wxydejoy.top/kk/hello-world/2021-11-25-18-00-29.png">2021-11-25-18-00-29</a><br><a href="https://image.wxydejoy.top/kk/hello-world/2021-11-25-19-39-16.jpg">2021-11-25-19-39-16</a><br><img src="https://image.wxydejoy.top/kk/%E5%88%9D%E5%A7%8B%E5%8C%96/2021-12-27-16-13-05.png" alt="2021-12-27-16-13-05"><br><img src="https://image.wxydejoy.top/kk/%E5%88%9D%E5%A7%8B%E5%8C%96/2021-12-29-10-27-28.webp" alt="2021-12-29-10-27-28"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>学习笔记</category>
-      
-    </categories>
+    <content type="html"><![CDATA[<p><strong>浅谈知识的输入与输出</strong></p>]]></content>
     
     
-    <tags>
-      
-      <tag>node.js</tag>
-      
-      <tag>hexo</tag>
-      
-    </tags>
     
   </entry>
   
