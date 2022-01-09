@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://image.wxydejoy.top/kk/%E5%88%9D%E5%A7%8B%E5%8C%96/2021-12-28-18-29-04.jpg">
 <meta property="article:published_time" content="2021-12-28T11:00:30.000Z">
-<meta property="article:modified_time" content="2022-01-09T03:19:03.715Z">
+<meta property="article:modified_time" content="2022-01-09T07:13:22.401Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://image.wxydejoy.top/kk/%E5%88%9D%E5%A7%8B%E5%8C%96/2021-12-28-18-29-04.jpg">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.8k 字
+      3.4k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9 分钟
+      11 分钟
     </span>
   
 
@@ -263,7 +263,24 @@
 <p>时间尺度指的是为变量保留的存储区位置的时间长度，也被称为变量的生命周期。如当程序完成运行时，所有的变量存储位置被释放回OS，如果程序还在执行，临时的变量存储区还被保留，随后才会被释放回OS。</p>
 <p>变量的存储区位置在它们被释放前<strong>保留在哪里以及能被保存多久</strong>，由变量的存储类决定。这些存储类包括：</p>
 <p>auto:自动存储类<br>static:静态存储类<br>extern:外部存储类<br>register:寄存器存储类</p>
+<p>下面将分别从局部变量与全局变量的存储类来介绍。</p>
 <h3 id="局部变量存储类"><a href="#局部变量存储类" class="headerlink" title="局部变量存储类"></a>局部变量存储类</h3><p>在局部变量的使用中，如果没有类描述，变量会自动地分配给auto类（默认存储类）。而另外三种存储类中，局部变量之只能是static或者register存储类的成员。</p>
+<p>auto类顾名思义就是自动创建与保留的变量类。自动局部变量的存储区，在每次声明自动变量的函数被调用的时候自动地保留。<strong>只要函数还没有返回，那么这些局部自动变量都是“活着的”（存储区可以使用），一旦返回，局部自动变量就“死掉了”（存储区被释放回操作系统）</strong>。</p>
+<p>static类顾名思义就是静态（相较于auto不会死掉）存储类。在某些情况下，希望一个函数记住函数之间调用的值，这就是static类的用途。这种类的局部变量，使程序保持这个变量和它的最后值。局部静态变量一旦被创建，就会一直在<strong>程序的生命期</strong>中保持存在，也就意味着函数在执行完成时，变量中存储的最后值在下一次它被调用时是可获得的。</p>
+<p>下面通过两个程序更形象感受下：</p>
+<p>auto类的使用：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">auto</span><span class="hljs-params">()</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> count;<br>    <span class="hljs-keyword">for</span>(count = <span class="hljs-number">1</span>;count &lt;= <span class="hljs-number">3</span>;count++)<br>    <span class="hljs-keyword">auto</span>();<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>&#125;<br><br><span class="hljs-keyword">void</span> <span class="hljs-keyword">auto</span>()<br>&#123;<br>    <span class="hljs-keyword">int</span> num = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The value of the automatic variable num is %d\n&quot;</span>, num);<br>    num++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
             <hr>
